@@ -1,23 +1,49 @@
-<!DOCTYPE html>
+<!doctype html>
+<html>
+
 <html lang="en">
 
 <head>
-    <title> Dashboard </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; width=device-width;">
     <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='dashboard_style.css')}}">
+    <title>Dashboard</title>
+
 </head>
 
 <body>
-    <div align="center">
-        <table class="styled-table">
-            <caption>List of experiments</caption>
-            <h1>
-                <!--Displaying the converted table-->
-                {% for table in tables %}
-                <h2>{{titles[loop.index]}}</h2>
-                {{ table|safe }} {% endfor %}
-            </h1>
-        </table>
+
+    <div class="table-title">
+        <h3>{{title}}-Dashboard</h3>
     </div>
+    <table class="table-fill">
+        <caption class="table-caption"> List of experiments
+        </caption>
+        <caption class="table-exp">Number of experiments : {{row_data|length}}
+        </caption>
+        <thead>
+            <tr class="table__header">
+                {% for col in column_names %}
+                <th class="text-left">
+                    {{col}}
+                </th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in row_data %}
+            <tr class="table-hover">
+                {% for col, row_ in zip(column_names, row) %}
+                <td class="text-left">
+                    {{row_}}
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+
 </body>
 
 </html>
