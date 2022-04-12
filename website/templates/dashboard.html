@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title> Dashboard </title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='dashboard_style.css')}}">
+</head>
+
+<body>
+    <div align="center">
+        <table class="styled-table">
+            <caption>List of experiments</caption>
+            <h1>
+                <!--Displaying the converted table-->
+                {% for table in tables %}
+                <h2>{{titles[loop.index]}}</h2>
+                {{ table|safe }} {% endfor %}
+            </h1>
+        </table>
+    </div>
+</body>
+
+</html>
